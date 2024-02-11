@@ -12,7 +12,7 @@ class BlogsController extends CrudController
     protected $inertiaFormPage = 'Admin/Blogs/Form'; 
 
     protected function beforeCreate($r)
-    {
+    { 
         $r->slug = Str::slug(request()->title);
 
         return $r;

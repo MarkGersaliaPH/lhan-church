@@ -4,7 +4,7 @@ import React from "react";
 
 function Pagination({ items }) {
     return (
-        <div className="flex items-center justify-between gap-5 bg-white px-4 py-3 sm:px-6">
+        <div className="flex items-center dark:bg-slate-700 dark:text-white justify-between gap-5 bg-white px-4 py-3 sm:px-6">
             {/* <div className="flex flex-1 justify-between sm:hidden">
                 <a
                     href="#"

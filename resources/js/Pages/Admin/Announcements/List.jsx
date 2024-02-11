@@ -6,13 +6,12 @@ import Table from "@/Components/Table";
 import Pagination from "@/Components/Pagination";
 
 function List({ auth, items }) {
-  const baseUrl = "admin.users";
-  const tableHeader = ["Name","Email","Created"]; 
+  const baseUrl = "admin.announcements";
+  const tableHeader = ["Name","Created"]; 
   const tableBody = items.data.map((data) => ({
       id: data.id, // the user's ID
       data: [
-        data.name, 
-        data.email, 
+        data.title, 
           data.created_at,  
       ], 
   }));
@@ -30,11 +29,11 @@ function List({ auth, items }) {
         user={auth.user}
         header={
           <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Users
+            Announcements
           </h2>
         }
       >
-        <Head title="Users List" />
+        <Head title="Announcements List" />
 
         <div className="py-5">
           <div className="  mx-auto sm:px-6 lg:px-8">
@@ -45,11 +44,11 @@ function List({ auth, items }) {
                   router.visit(route(`${baseUrl}.create`));
                 }}
               >
-                Create Users
+                Create Announcements
               </PrimaryButton>
             )}
             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-              <div className=" text-gray-900 border-b pb-5">Users List</div>
+              <div className=" text-gray-900 border-b pb-5">Announcements List</div>
              
              <div>
               <Table headers={tableHeader} body={tableBody} actions={actions} />

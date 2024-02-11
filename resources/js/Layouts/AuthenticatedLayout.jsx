@@ -14,11 +14,12 @@ export default function Authenticated({ user, header, children }) {
         { name: "Blogs", route_name: "admin.blogs.index" },
         { name: "Users", route_name: "admin.users.index" },
         { name: "Branches", route_name: "admin.branches.index" },
+        { name: "Announcements", route_name: "admin.announcements.index" },
     ];
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <nav className=" bg-slate-800 border-b border-gray-100 dark:border-gray-700">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="  mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
@@ -177,7 +178,7 @@ export default function Authenticated({ user, header, children }) {
 
             {header && (
                 <header className="bg-white dark:bg-gray-800 shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div className="  mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>

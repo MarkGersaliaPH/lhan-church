@@ -7,6 +7,8 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

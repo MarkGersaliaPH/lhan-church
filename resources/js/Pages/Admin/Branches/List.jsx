@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -7,10 +7,11 @@ import Pagination from "@/Components/Pagination";
 
 function List({ auth, items }) {
   const baseUrl = "admin.branches";
-  const tableHeader = ["Address","Head Pastor","Is Main","Created"]; 
+  const tableHeader = ["Name","Address","Head Pastor","Is Main","Created"]; 
   const tableBody = items.data.map((data) => ({
       id: data.id, // the user's ID
       data: [
+        data.name, 
         data.address, 
         data.head_pastor, 
         data.is_main ? "Yes" : "No", 
@@ -24,6 +25,7 @@ function List({ auth, items }) {
     edit: `${baseUrl}.edit`,
 };
 
+console.log(items);
  
   return (
     <div>
@@ -38,7 +40,7 @@ function List({ auth, items }) {
         <Head title="Branches List" />
 
         <div className="py-5">
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="  mx-auto sm:px-6 lg:px-8">
             {baseUrl && (
               <PrimaryButton
                 className="my-5"

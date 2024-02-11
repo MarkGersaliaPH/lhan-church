@@ -36,7 +36,7 @@ function List({ auth, items }) {
         <Head title="Events List" />
 
         <div className="py-5">
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="  mx-auto sm:px-6 lg:px-8">
             {baseUrl && (
               <PrimaryButton
                 className="my-5"

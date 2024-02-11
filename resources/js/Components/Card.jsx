@@ -3,7 +3,7 @@ import React from "react";
 export function CardHeader({ title, children, className, titleClass }) {
     return (
         <div
-            className={`p-6 border-b dark:border-slate-200 ${className}`}
+            className={`p-6 border-b dark:bg-slate-800 dark:border-slate-200 ${className}`}
         >
             <h5
                 className={`text-xl font-medium  leading-tight align-middle text-neutral-800 dark:text-neutral-50 ${titleClass}`}
@@ -23,7 +23,7 @@ export function CardBody({ title, children, className }) {
 }
 export function CardFooter({ title, children }) {
     return (
-        <div className="flex items-center p-5  justify-between border-t  mt-5">
+        <div className="flex items-center p-5 dark:bg-slate-800 justify-between border-t  mt-5">
             <div>{children}</div>
         </div>
     );

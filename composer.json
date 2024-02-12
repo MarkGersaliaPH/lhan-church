@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "markgersaliaph/laravel-crud-generate": "dev-master",
+        "munafio/chatify": "^1.6",
         "spatie/laravel-medialibrary": "*",
         "tightenco/ziggy": "^1.0"
     },

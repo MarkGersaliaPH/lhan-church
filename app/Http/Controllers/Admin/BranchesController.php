@@ -21,21 +21,23 @@ class BranchesController extends CrudController
     {
         $this->fileuploadService = $fileuploadService;
     }
+ 
 
-    public function getRules(){
-        return ['address'=>'required','description'=>'required','head_pastor'=>'required'];
+    public function afterCreate($r){   
+        return $this->processImage($r);
+    }
+ 
+ 
+    public function afterUpdate($r){    
+        return $this->processImage($r);
     }
 
-    public function beforeCreate($r){  
-        $this->fileuploadService->processImage($r);
-        $r->services = request()->services;
+    public function processImage($r){ 
+        $this->fileuploadService->processImage($r); 
         return $r;
     }
-
-    public function beforeUpdate($r){ 
-        $this->fileuploadService->processImage($r);
-        $r->services = request()->services;
-        return $r;
-    }
+ 
+ 
+ 
 }
   

@@ -10,8 +10,7 @@ class FilepondUploadController extends Controller
     //
 
     public function upload(Request $request){ 
-        $sessionId = session()->getId();
-
+        $sessionId = session()->getId(); 
         $tempImage = $request->file('file');
 
         $tempImagePath = $tempImage->storeAs("temp/{$sessionId}", $tempImage->getClientOriginalName(), 'public');

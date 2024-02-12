@@ -8,16 +8,16 @@ class FileUploadService
 {
     public function processImage($model)
     {
-
-        dd(request()->hasFile('file'));
+  
         // Verify that the image belongs to the correct session
-        $tempImagePath = session('temp');
-        if (Storage::disk('public')->exists($tempImagePath)) {  
+        $tempImagePath = session('temp'); 
+
+        if (Storage::disk('public')->exists($tempImagePath)) {   
             // Add the temporarily stored image to the media collection
             $model->addMedia(storage_path("app/public/{$tempImagePath}"))->toMediaCollection('default');
 
-            // Clean up temporary storage (if needed)
-            Storage::disk('public')->delete($tempImagePath);
+            // // Clean up temporary storage (if needed)
+            Storage::disk('public')->deleteDirectory('temp');
 
             session()->forget('temp');
         } else {

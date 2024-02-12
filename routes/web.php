@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
    
       });
 
-      Route::post('filepond_upload',[FilepondUploadController::class,'upload']);
+      Route::post('/upload-temp',[FilepondUploadController::class,'upload']);
 });
 
 require __DIR__.'/auth.php';

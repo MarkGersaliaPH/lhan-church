@@ -13,8 +13,8 @@ class Branch extends Model  implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
-    protected $fillable = ['address','description','head_pastor','is_main','name','email','mobile_no','tel_no','services'];
-    
+    protected $fillable = ['address', 'description', 'head_pastor', 'is_main', 'name', 'email', 'mobile_no', 'tel_no', 'services'];
+
     protected $appends = ['cover_image'];
 
     /**
@@ -24,7 +24,20 @@ class Branch extends Model  implements HasMedia
      */
     public function getCoverImageAttribute()
     {
-        return $this->getFirstMediaUrl('default');
+        $media = $this->getFirstMedia('default'); 
+        if($media){
+            return ['name'=>$media->name,'url'=>$media->getFullUrl()];
+        }
+        
+        return [];
     }
 
+    // in your model
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('default')
+            ->singleFile();
+    }
 }

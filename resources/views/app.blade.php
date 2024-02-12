@@ -19,7 +19,7 @@
         @inertiaHead
 
         <script>
-            var app_name = {{env("APP_NAME")}};
+            var app_name = "{{env("APP_NAME")}}";
             var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
 
         </script>

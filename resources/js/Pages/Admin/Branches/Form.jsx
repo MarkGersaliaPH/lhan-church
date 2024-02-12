@@ -9,7 +9,7 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import Card, { CardBody, CardFooter, CardHeader } from "@/Components/Card";
 import FormInput from "@/Components/FormInput";
 import DangerButton from "@/Components/DangerButton";
-import FileUpload from "@/Components/FileUpload";
+import FileUpload from "@/Components/FileUpload"; 
 
 function Form({ auth, item }) {
     const {
@@ -29,8 +29,7 @@ function Form({ auth, item }) {
         e.preventDefault();
 
         data.services = JSON.stringify(services);
-
-        console.log(data)
+ 
         if (data.id) {
             put(route(`${baseUrl}.update`, data.id), {
                 preserveScroll: true,
@@ -50,37 +49,34 @@ function Form({ auth, item }) {
             e.target.type == "checkbox" ? e.target.checked : e.target.value
         );
     };
- 
-    let [services, setServices] = useState(data.id ? JSON.parse(data.services) : [{ name: "", description: "" }]);
+
+    let [services, setServices] = useState(
+        data.id ? JSON.parse(data.services) : [{ name: "", description: "" }]
+    );
+    let [selectedFile, setSelectedFile] = useState([]);
 
     const addRow = () => {
         setServices([...services, { name: "", description: "" }]);
     };
 
     const removeRow = (key) => {
-        let newServices = services.filter((service,service_key) => {
+        let newServices = services.filter((service, service_key) => {
             return key != service_key;
         });
- 
+
         setServices(newServices);
     };
 
-    const handleServiceChange = (key,e) =>{
-        let newServices = services.filter((service,service_key) => {
+    const handleServiceChange = (key, e) => {
+        let newServices = services.filter((service, service_key) => {
             return key == service_key;
         });
         newServices[0][e.target.name] = e.target.value;
-        setServices([...services],newServices);
-    }
-
-    const handleFileChange = (value)=>{
+        setServices([...services], newServices);
+    };
  
-        setData("file",value)
-    }
-  
 
-    const imageFile = new File([new Blob()], data.cover_image, { type: 'image/jpeg' });
- 
+    console.log(data)
     return (
         <div>
             <AuthenticatedLayout
@@ -93,11 +89,9 @@ function Form({ auth, item }) {
             >
                 <Head title="Branches Form" />
 
-                <div className="py-5"> 
+                <div className="py-5">
                     <div className="  mx-auto sm:px-6 lg:px-8">
-                        <div
-                            className={`grid md:grid-cols-3 gap-4`}
-                        >
+                        <div className={`grid md:grid-cols-3 gap-4`}>
                             <div className="col-span-1 md:col-span-2">
                                 <Card className="mb-5">
                                     <CardBody>
@@ -177,7 +171,12 @@ function Form({ auth, item }) {
                                                         name="name"
                                                         label="Name"
                                                         value={service.name}
-                                                        onChange={(e)=>handleServiceChange(key,e)}
+                                                        onChange={(e) =>
+                                                            handleServiceChange(
+                                                                key,
+                                                                e
+                                                            )
+                                                        }
                                                         type="text"
                                                     />
                                                     <FormInput
@@ -186,7 +185,12 @@ function Form({ auth, item }) {
                                                         value={
                                                             service.description
                                                         }
-                                                        onChange={(e)=>handleServiceChange(key,e)}
+                                                        onChange={(e) =>
+                                                            handleServiceChange(
+                                                                key,
+                                                                e
+                                                            )
+                                                        }
                                                         type="textarea"
                                                         className="h-12"
                                                     />
@@ -203,7 +207,7 @@ function Form({ auth, item }) {
                                                                 Remove
                                                             </DangerButton>
                                                         )}
-                                                        
+
                                                         {services.length ==
                                                             key + 1 && (
                                                             <PrimaryButton
@@ -218,64 +222,65 @@ function Form({ auth, item }) {
                                             ))}
                                     </CardBody>
                                 </Card>
-
-                                <Card>
-                                    <CardBody>
-                                        {" "}
-                                        <PrimaryButton
-                                            className="mr-2"
-                                            onClick={submit}
-                                        >
-                                            Submit
-                                        </PrimaryButton>
-                                        <SecondaryButton
-                                            onClick={() =>
-                                                router.visit(
-                                                    route(`${baseUrl}.index`)
-                                                )
-                                            }
-                                        >
-                                            Cancel
-                                        </SecondaryButton>
-                                    </CardBody>
-                                </Card>
                             </div>
 
                             <div className="col-span-1 md:col-span-1">
                                 <Card className="mb-5">
                                     <CardHeader>Cover image</CardHeader>
                                     <CardBody>
-                                        <FileUpload value={data.cover_image} onChange={(value)=>handleFileChange(value)}  />
+                                        {/* <DropZoneInput 
+                                            value={[data.cover_image]}
+                                            multiple={false}
+                                        /> */}
+                                        <FileUpload value={data.cover_image} />
                                     </CardBody>
                                 </Card>
                                 {data.id && (
-                                    <div> 
-                                    <Card>
-                                        <CardBody>
-                                            <table className="w-full">
-                                                <tr>
-                                                    <th className="p-2 text-left">
-                                                        Created at
-                                                    </th>
-                                                    <td className="p-2">
-                                                        {data.created_at}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th className="p-2 text-left">
-                                                        Last Updated{" "}
-                                                    </th>
-                                                    <td className="p-2">
-                                                        {data.updated_at}
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </CardBody>
-                                    </Card>
+                                    <div>
+                                        <Card>
+                                            <CardBody>
+                                                <table className="w-full">
+                                                    <tr>
+                                                        <th className="p-2 text-left">
+                                                            Created at
+                                                        </th>
+                                                        <td className="p-2">
+                                                            {data.created_at}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="p-2 text-left">
+                                                            Last Updated{" "}
+                                                        </th>
+                                                        <td className="p-2">
+                                                            {data.updated_at}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </CardBody>
+                                        </Card>
                                     </div>
                                 )}
                             </div>
                         </div>
+                        <Card>
+                            <CardBody>
+                                {" "}
+                                <PrimaryButton
+                                    className="mr-2"
+                                    onClick={submit}
+                                >
+                                    Submit
+                                </PrimaryButton>
+                                <SecondaryButton
+                                    onClick={() =>
+                                        router.visit(route(`${baseUrl}.index`))
+                                    }
+                                >
+                                    Cancel
+                                </SecondaryButton>
+                            </CardBody>
+                        </Card>
                     </div>
                 </div>
             </AuthenticatedLayout>

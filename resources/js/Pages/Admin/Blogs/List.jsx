@@ -36,8 +36,8 @@ function List({ auth, items }) {
       >
         <Head title="Blogs List" />
 
-        <div className="py-5">
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div className="">
+          <div className=" mx-auto sm:px-6 lg:px-8">
             {baseUrl && (
               <PrimaryButton
                 className="my-5"
@@ -48,8 +48,8 @@ function List({ auth, items }) {
                 Create Blogs
               </PrimaryButton>
             )}
-            <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-              <div className=" text-gray-900 border-b pb-5">Blogs List</div>
+            <div className="bg-white dark:bg-slate-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+              <div className=" text-gray-900 dark:text-white border-b pb-5">Blogs List</div>
              
              <div>
               <Table headers={tableHeader} body={tableBody} actions={actions} />

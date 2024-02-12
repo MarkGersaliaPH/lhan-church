@@ -99,7 +99,11 @@ const FormInput = ({
                     autoComplete={autoComplete}
                     rows={5}
                 >{value}</textarea>
-            )   : (
+            )  : type === "rich_editor" ? ( 
+                <RichTextEditor onChange={onChange}  
+                name={name} 
+                value={value}/> 
+            )  : (
                 <TextInput
                     name={name}
                     id={name}

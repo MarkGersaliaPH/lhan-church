@@ -46,11 +46,9 @@ function Form({ auth, item }) {
             e.target.type == "checkbox" ? e.target.checked : e.target.value
         );
     };
-    const handleEditorChange = (name, event, editor) => {
-      const content = editor.getData();
-      setData(name, content);
-
-      // Now you can save the 'content' variable to your state or perform other actions.
+    
+    const handleEditorChange = (name, content) => { 
+      setData(name, content);  
   };
     
     return (
@@ -66,16 +64,16 @@ function Form({ auth, item }) {
                 <Head title="Blogs Form" />
 
                 <div className="py-5">
-                    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div className=" mx-auto sm:px-6 lg:px-8">
                         <div
-                            className={`grid grid-cols-3 gap-4`}
+                            className={`grid md:grid-cols-3 gap-4`}
                         >
                             <div className="col-span-1 md:col-span-2">
-                               
                                 <Card>
                                     <CardHeader>Content</CardHeader> 
                                     <CardBody>
-                                         <RichTextEditor setData={setData} name="content" value={data.content}/>
+                                         <FormInput type="rich_editor" onChange={handleEditorChange}  name="content" value={data.content} /> 
+                                         {/* <RichTextEditor /> */}
                                     </CardBody>
                                 </Card>
                             </div>

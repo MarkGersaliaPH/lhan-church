@@ -1,18 +1,14 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-export default function RichTextEditor({setData,name,value}) {
-
-    const handleChange = (value) =>{ 
-       setData(name,value)
-       
-    }
+export default function RichTextEditor({onChange,setData,name,value}) {
+ 
 
   return (
     <Editor
       apiKey='5ptxxeac7r9wesnteagkixj7dt638wsv44snblzk6a826nuu'
       
-      onEditorChange={(newValue, editor) => handleChange(newValue)}
+      onEditorChange={(newValue, editor) => onChange(name,newValue)}
       init={{
         
         height: 500,

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FilepondUploadController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,11 @@ Route::middleware('auth')->group(function () {
         
    
       });
+
+      Route::post('filepond_upload',[FilepondUploadController::class,'upload']);
 });
 
 require __DIR__.'/auth.php';
+
+Route::resource('admin/announcements',App\Http\Controllers\Admin\AnnouncementsController::class)->names('admin.announcements');
+

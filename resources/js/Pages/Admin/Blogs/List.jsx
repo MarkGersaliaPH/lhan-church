@@ -23,6 +23,8 @@ function List({ auth, items }) {
     edit: `${baseUrl}.edit`,
 };
 
+
+console.log(items)
  
   return (
     <div>

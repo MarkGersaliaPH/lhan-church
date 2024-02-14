@@ -15,6 +15,8 @@ export default function Authenticated({ user, header, children }) {
         { name: "Users", route_name: "admin.users.index" },
         { name: "Branches", route_name: "admin.branches.index" },
         { name: "Announcements", route_name: "admin.announcements.index" },
+        { name: "Events Calendar", route_name: "admin.events.index" },
+        { name: "Messenger", route_name: "admin/messenger" },
     ];
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">

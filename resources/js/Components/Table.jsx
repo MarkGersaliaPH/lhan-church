@@ -19,11 +19,7 @@ function Table({ headers, body, actions, additional_action, fromNumber = 1 }) {
             if (result.isConfirmed) {
                 router.delete(route(actions.destroy, id), {
                     onSuccess: (page) => {
-                        Swal.fire(
-                            "Good job!",
-                            "Data has been deleted!",
-                            "success"
-                        );
+                         
                     },
                 });
             }

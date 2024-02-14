@@ -6,14 +6,12 @@ import Table from "@/Components/Table";
 import Pagination from "@/Components/Pagination";
 
 function List({ auth, items }) {
-  const baseUrl = "admin.events";
-  const tableHeader = ["Title","Location","Date","Created"]; 
+  const baseUrl = "admin.pages";
+  const tableHeader = ["Name","Created"]; 
   const tableBody = items.data.map((data) => ({
       id: data.id, // the user's ID
       data: [
-        data.title, 
-        data.address, 
-        <>{data.start_date} TO {data.end_date}</>, 
+        data.name, 
           data.created_at,  
       ], 
   }));
@@ -31,14 +29,14 @@ function List({ auth, items }) {
         user={auth.user}
         header={
           <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Events
+            Pages
           </h2>
         }
       >
-        <Head title="Events List" />
+        <Head title="Pages List" />
 
         <div className="py-5">
-          <div className="  mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {baseUrl && (
               <PrimaryButton
                 className="my-5"
@@ -46,11 +44,11 @@ function List({ auth, items }) {
                   router.visit(route(`${baseUrl}.create`));
                 }}
               >
-                Create Events
+                Create Pages
               </PrimaryButton>
             )}
             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-              <div className=" text-gray-900 border-b pb-5">Events List</div>
+              <div className=" text-gray-900 border-b pb-5">Pages List</div>
              
              <div>
               <Table headers={tableHeader} body={tableBody} actions={actions} />

@@ -4,6 +4,7 @@ import InputLabel from "./InputLabel";
 import InputError from "./InputError";
 import TextInput from "./TextInput";
 import RichTextEditor from "./RichTextEditor";
+import DateInput from "./DateInput";
 
 const FormInput = ({
     label,
@@ -15,7 +16,8 @@ const FormInput = ({
     type = "text",
     isFocused = false,
     options, // Array of objects for select options
-    className 
+    className,
+    ...props
 }) => {
 
 
@@ -36,7 +38,9 @@ const FormInput = ({
                     value={value}
                     onChange={onChange}
                     autoComplete={autoComplete}
+                    {...props}
                 >
+                    <option value="" default hidden>Select {label}</option>
                     {options.map((option) => (
                         <option key={option.value} value={option.value}>
                             {option.label}
@@ -78,10 +82,18 @@ const FormInput = ({
                     </label>
                 </div>
             ) : type === "date" ? (
-                <input
-                    type="date"
-                    id={name}
-                    name={name}
+                // <input
+                //     type="date"
+                //     id={name}
+                //     name={name}
+                //     className="mt-1 block w-full"
+                //     value={value}
+                //     onChange={onChange}
+                //     autoComplete={autoComplete}
+                // />
+                <DateInput 
+                {...props}
+                type="date" 
                     className="mt-1 block w-full"
                     value={value}
                     onChange={onChange}
@@ -98,6 +110,7 @@ const FormInput = ({
                     onChange={onChange}
                     autoComplete={autoComplete}
                     rows={5}
+                    {...props}
                 >{value}</textarea>
             )  : type === "rich_editor" ? ( 
                 <RichTextEditor onChange={onChange}  
@@ -113,6 +126,7 @@ const FormInput = ({
                     required
                     autoComplete={autoComplete}
                     type={type}
+                    {...props}
                 />
             )}
             <InputError className="mt-2" message={error} />

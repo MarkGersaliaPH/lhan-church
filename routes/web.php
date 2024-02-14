@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('admin/users',App\Http\Controllers\Admin\UsersController::class)->names('admin.users'); 
         Route::resource('admin/events',App\Http\Controllers\Admin\EventsController::class)->names('admin.events');
         Route::resource('admin/branches',App\Http\Controllers\Admin\BranchesController::class)->names('admin.branches');
+Route::resource('admin/announcements',App\Http\Controllers\Admin\AnnouncementsController::class)->names('admin.announcements');
         
    
       });
@@ -50,5 +51,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('admin/announcements',App\Http\Controllers\Admin\AnnouncementsController::class)->names('admin.announcements');
 
+
+Route::resource('admin/pages',App\Http\Controllers\Admin\PagesController::class)->names('admin.pages');

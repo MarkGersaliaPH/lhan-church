@@ -10,6 +10,8 @@ import Card, { CardBody, CardFooter, CardHeader } from "@/Components/Card";
 import FormInput from "@/Components/FormInput";
 import RichTextEditor from "@/Components/RichTextEditor";
 import { Editor } from "@tinymce/tinymce-react";
+import FileUpload from "@/Components/FileUpload";
+import MetaDataInput from "@/Components/MetaDataInput";
 
 function Form({ auth, item }) {
     const {
@@ -50,6 +52,17 @@ function Form({ auth, item }) {
     const handleEditorChange = (name, content) => { 
       setData(name, content);  
   };
+
+  const handleMetaData=(value)=>{
+ 
+        setData({...data,
+            'meta_data':value
+        }); 
+
+        console.log(data)
+  }
+
+  console.log(data)
     
     return (
         <div>
@@ -68,7 +81,7 @@ function Form({ auth, item }) {
                         <div
                             className={`grid md:grid-cols-3 gap-4`}
                         >
-                            <div className="col-span-1 md:col-span-2">
+                            <div className="col-span-1 h-screen md:col-span-2">
                                 <Card>
                                     <CardHeader>Content</CardHeader> 
                                     <CardBody>
@@ -90,12 +103,37 @@ function Form({ auth, item }) {
                                             onChange={handleChange}
                                         />
                                         <FormInput
+                                            name="slug"
+                                            label="Slug"
+                                            value={data.slug}
+                                            error={errors.slug}
+                                            disabled
+                                            onChange={handleChange}
+                                        />
+                                        <FormInput
                                             name="author"
                                             label="Author"
                                             value={data.author}
                                             error={errors.author}
                                             onChange={handleChange}
                                         />
+                                    </CardBody>
+                                </Card>
+                                <Card className="mb-5">
+                                    <CardHeader>Metadata</CardHeader>
+                                    <CardBody>
+                                        
+                                    <MetaDataInput onChange={handleMetaData} value={data.meta_data} />
+                                    </CardBody>
+                                </Card>
+                                <Card className="mb-5">
+                                    <CardHeader>Cover image</CardHeader>
+                                    <CardBody>
+                                        {/* <DropZoneInput 
+                                            value={[data.cover_image]}
+                                            multiple={false}
+                                        /> */}
+                                        <FileUpload value={data.cover_image} />
                                     </CardBody>
                                 </Card>
                                 {data.id && (
@@ -116,6 +154,14 @@ function Form({ auth, item }) {
                                                     </th>
                                                     <td className="p-2">
                                                         {data.updated_at}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th className="p-2 text-left">
+                                                        Created By{" "}
+                                                    </th>
+                                                    <td className="p-2">
+                                                        {data.created_by.name}
                                                     </td>
                                                 </tr>
                                             </table>

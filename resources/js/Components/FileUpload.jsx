@@ -35,7 +35,7 @@ export default function FileUpload({
     const [files, setFiles] = useState([]);
 
     useEffect(() => {
-        if (value.url) {
+        if (value && value.url) {
             setFiles([
                 {
                     source: value.url,

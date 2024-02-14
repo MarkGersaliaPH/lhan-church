@@ -26,6 +26,7 @@ class BranchesController extends CrudController
     public function afterCreate($r){   
         return $this->processImage($r);
     }
+
  
  
     public function afterUpdate($r){    
@@ -36,6 +37,7 @@ class BranchesController extends CrudController
         $this->fileuploadService->processImage($r); 
         return $r;
     }
+ 
  
  
  
